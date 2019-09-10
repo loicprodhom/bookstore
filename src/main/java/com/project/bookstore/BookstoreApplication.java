@@ -19,9 +19,8 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner demo(BookRepository repository) {
 		return (args) -> {
-			repository.save(new Book("1984", "George Orwell","XXXXX",1984,9.99));
+			repository.save(new Book("1984", "George Orwell","XXXXX",1949,9.99));
 			repository.save(new Book("Le Signal", "Maxime Chattam","YYYYY",2018,23.99));
 		};
 	}
-
 }
