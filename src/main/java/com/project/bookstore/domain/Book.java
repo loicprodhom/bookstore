@@ -6,30 +6,37 @@ public class Book {
 	// title, author, year, isbn, price 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private long bookId;
 	private String title, author, isbn;
 	private int year;
 	private double price;
 	
+	@ManyToOne
+    @JoinColumn(name = "category_id")
+	private Category category;
+	
 	public Book() {}
 	
-	public Book(String title, String author, String isbn, int year, double price) {
+	public Book(String title, String author, String isbn, int year, double price, Category category) {
+		super();
 		this.title=title;
 		this.author=author;
 		this.isbn=isbn;
 		this.year=year;
 		this.price=price;
+		this.category=category;
 	}
 	
 	public Book(String title, String author, String isbn, int year) {
+		super();
 		this.title=title;
 		this.author=author;
 		this.isbn=isbn;
 		this.year=year;
 	}
 	
-	public long getId() {
-		return id;
+	public long getBookId() {
+		return bookId;
 	}
 	
 	public String getTitle() {
@@ -52,8 +59,8 @@ public class Book {
 		return price;
 	}
 	
-	public void setId(long id) {
-		this.id = id;
+	public void setBookId(long book_id) {
+		this.bookId = book_id;
 	}
 	
 	public void setTitle(String title) {
@@ -76,10 +83,18 @@ public class Book {
 		this.price = price;
 	}
 	
+	public Category getCategory() {
+		return category;
+	}
+	
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	
 	
 	
 	@Override
 	public String toString() {
-		return "Book id="+id+", title="+title+", author="+author+", isbn="+isbn+", year="+year+", price="+price;
+		return "Book book_id="+bookId+", title="+title+", author="+author+", isbn="+isbn+", year="+year+", price="+price;
 	}
 }
