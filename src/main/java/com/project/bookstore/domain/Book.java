@@ -1,6 +1,8 @@
 package com.project.bookstore.domain;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Book {
 	// title, author, year, isbn, price 
@@ -12,6 +14,7 @@ public class Book {
 	private double price;
 	
 	@ManyToOne
+	@JsonIgnore
     @JoinColumn(name = "category_id")
 	private Category category;
 	
