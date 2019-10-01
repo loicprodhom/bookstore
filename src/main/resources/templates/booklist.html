@@ -22,9 +22,10 @@
     		<td th:text="${book.year}"></td>
     		<td th:text="${book.category}"></td>
     		<td><a class="btn btn-success" th:href="@{/edit/{id}(id=${book.bookId})}">Edit</a></td> 
-			<td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${book.bookId})}">Delete</a></td>    		
+			<td><a sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger" th:href="@{/delete/{id}(id=${book.bookId})}">Delete</a></td>    		
     	</tr>
      </table>
-	 <a class="btn btn-success" href="/add">Add Book</a>    	
+	 <a class="btn btn-success" href="/add">Add Book</a><br>
+	 <a href="/logout" class="btn btn-sm btn-danger">Sign Out</a> 
 </body>
 </html>

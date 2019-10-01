@@ -18,23 +18,22 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository catRepository) {
+	public CommandLineRunner demo(UserRepository userRepository ,BookRepository bookRepository, CategoryRepository catRepository) {
 		return (args) -> {	
 			catRepository.deleteAll();
 			bookRepository.deleteAll();
+			userRepository.deleteAll();
+			
+			System.out.println("Saving users");
+			userRepository.save(new User("user", "user", "USER"));
+			userRepository.save(new User("admin", "admin", "ADMIN"));
 			
 			System.out.println("Saving categories");
 			catRepository.save(new Category("Fiction"));
 			catRepository.save(new Category("Horror"));
 			catRepository.save(new Category("Thriller"));
 			catRepository.save(new Category("Autobiography"));
-			catRepository.save(new Category("Philosophy"));
-			
-			System.out.println("Fetching all categories");
-			for (Category category : catRepository.findAll()) {
-				System.out.println(category);
-			}
-			
+			catRepository.save(new Category("Philosophy"));			
 			
 			System.out.println("Saving books");
 			bookRepository.save(new Book("1984", "George Orwell","XXXXX",1949,9.99, catRepository.findByName("Fiction").get(0)));
